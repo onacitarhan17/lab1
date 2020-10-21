@@ -19,8 +19,8 @@ In addition to writing these functions, you also have to determine the bit repre
 and write the values of the bit representations as 1-byte hexadecimal numbers. In this 8-bit 
 representation, 1 bit is allocated for sign, 4 bits are for exponent, and 3 bits are for fraction.
 
-### Install command
+### Compile command
 `make install`
 
-### Run command
+### Testing command
 `make test`
