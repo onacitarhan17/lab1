@@ -12,10 +12,10 @@
 int getByte(int x, int n) {
 
   /* Shift x n*8 positions right */
-  int shift = ;
-  int xs = ;
+  int shift = 3;
+  int xs = 0xff;
   /* Mask byte */
-  return ;
+  return (x >> (n << shift)) & xs;
 }
 
 /*
@@ -26,14 +26,14 @@ int getByte(int x, int n) {
  */
 int bitSum16bit(int input)
 {
-	int mask = ;
-	int perEightSum = ; 
-	int mask2 = ;
-	int quarterSum = ;
-	int mask3 = ;
-	int halfSum = ;
-	int mask4 = ;
-	return ;
+	int mask = 0x55;
+	int perEightSum = (input & mask) + ((input >> 1) & mask); 
+	int mask2 = 0x0f;
+	int quarterSum = (perEightSum & mask2) + ((perEightSum >> 4) & mask2) ;
+	int mask3 = 0x05;
+	int halfSum = (quarterSum & mask3) + ((quarterSum >> 1) & mask3);
+	int mask4 = 0x03;
+	return (halfSum & mask4) + ((halfSum >> 2) & mask4);
 }
 
 float u2f(unsigned input) {
@@ -78,12 +78,12 @@ int main(int argc, char *argv[])
 	// please enter the bit representation of 224 
 	// as a 1-byte number, 
 	// it can be a hexadecimal like 0x3f
-	unsigned u1 = ;
+	unsigned u1 = 0x0076;
 
 	// please enter the bit representation of -0.375
         // as a 1-byte number,
         // it can be a hexadecimal like 0x3f
-        unsigned u2 = ;
+        unsigned u2 = 0x00ac;
 	printf("%d, %d, %0.3f, %0.3f\n", getByte(full_num, byte_pos), bitSum16bit(sum_input), u2f(u1), u2f(u2));
 	return 0;
 }
